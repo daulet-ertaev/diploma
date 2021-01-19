@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "824904593406",
+    "project_id": "diploma-4071c",
+    "storage_bucket": "diploma-4071c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824904593406:android:c7e44aa57766d6b9261aaf",
+        "android_client_info": {
+          "package_name": "com.example.diploma"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824904593406-ilkjkhvqvcb7189g6a5g76q8tiihmekc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkArqgNrbzW1zetSAAaCFk3qIC7Iqokag"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "824904593406-ilkjkhvqvcb7189g6a5g76q8tiihmekc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
