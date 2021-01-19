@@ -14,4 +14,7 @@
         android:textSize="40dp"
         android:text="PROFILE FRAGMENT" />
 
+
+
 </RelativeLayout>
+

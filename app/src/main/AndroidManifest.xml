@@ -3,8 +3,10 @@
     package="com.example.diploma">
 
     <application>
+        <activity android:name=".MainActivity"
+        android:theme="@style/Theme.Diploma.NoActionBar"> </activity>
         <activity
-            android:name=".WelcomePage"
+            android:name=".Login"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.Diploma.NoActionBar">
             <intent-filter>

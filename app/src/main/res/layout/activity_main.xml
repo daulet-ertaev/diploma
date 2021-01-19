@@ -6,6 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/verificationText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:elegantTextHeight="true"
+        android:gravity="center_horizontal"
+        android:text="@string/email_not_verified"
+        android:textAlignment="center"
+        android:textColor="#E62323"
+        android:textSize="20sp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/verifyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/verify_now"
+        android:visibility="gone" />
 
  <com.ismaeldivita.chipnavigation.ChipNavigationBar
      android:id="@+id/chipNavigation"
