@@ -4,33 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_200"
+    android:background="@drawable/background_welcomepage"
     tools:context=".WelcomePage">
+
 
     <Button
         android:id="@+id/btn_signin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="495px"
+        android:layout_height="150px"
+        android:layout_marginLeft="30px"
+        android:layout_marginTop="1580px"
         android:text="@string/signin"
-        android:layout_centerInParent="true"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btn_signup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="495px"
+        android:layout_height="150px"
+        android:layout_marginLeft="555px"
+        android:layout_marginTop="1580px"
         android:text="@string/signup"
-        android:layout_marginTop="500dp"
         tools:ignore="MissingConstraints" />
-
 
     <Button
         android:id="@+id/btn_guest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="1020px"
+        android:layout_height="150px"
+        android:layout_marginTop="1740px"
+        android:layout_marginLeft="30px"
         android:text="@string/asguest"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="145dp"
-        tools:layout_editor_absoluteY="212dp" />
+        tools:ignore="MissingConstraints"/>
 
 </RelativeLayout>
