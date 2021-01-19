@@ -26,4 +26,9 @@
     <string name="signin">Войти</string>
     <string name="signup">Регистрация</string>
     <string name="asguest">Войти как гость</string>
+    <string name="sign_in">Sign in</string>
+    <string name="register_now">Register now</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="email_not_verified">Email Not Verified!</string>
+    <string name="verify_now">Verify Now</string>
 </resources>
