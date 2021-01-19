@@ -2,30 +2,48 @@ package com.example.diploma;
 
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.view.View;
+import androidx.fragment.app.Fragment;
 
 public class MainActivity extends AppCompatActivity {
+
+
+    private ChipNavigationBar chipNavigationBar;
+    private Fragment fragment=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+
+        chipNavigationBar=findViewById(R.id.chipNavigation);
+        chipNavigationBar.setItemSelected(R.id.home, true);
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
+
+        chipNavigationBar.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onItemSelected(int i) {
+                switch(i){
+                    case R.id.home:
+                        fragment=new HomeFragment();
+                        break;
+                    case R.id.aaa:
+                        fragment=new aaa();
+                        break;
+                    case R.id.notification:
+                        fragment=new NotificaitonFragment();
+                        break;
+                    case R.id.profile:
+                        fragment=new ProfileFragment();
+                        break;
+                }
+                if(fragment!=null){
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
+                }
             }
-        });
+         });
     }
 }
