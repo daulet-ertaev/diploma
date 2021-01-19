@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/teal_200"
+    tools:context=".WelcomePage">
+
+    <Button
+        android:id="@+id/btn_signin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/signin"
+        android:layout_centerInParent="true"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btn_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/signup"
+        android:layout_marginTop="500dp"
+        tools:ignore="MissingConstraints" />
+
+
+    <Button
+        android:id="@+id/btn_guest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/asguest"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="145dp"
+        tools:layout_editor_absoluteY="212dp" />
+
+</RelativeLayout>

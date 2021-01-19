@@ -4,7 +4,7 @@
 
     <application>
         <activity
-            android:name=".Register"
+            android:name=".WelcomePage"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.Diploma.NoActionBar">
             <intent-filter>
