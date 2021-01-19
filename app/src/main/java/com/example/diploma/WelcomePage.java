@@ -11,6 +11,8 @@ public class WelcomePage extends AppCompatActivity {
 
 
     private Button btn_signup;
+    private Button btn_signin;
+    private Button btn_guest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,15 +24,31 @@ public class WelcomePage extends AppCompatActivity {
         btn_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openRegister();
+                startActivity(new Intent(getApplicationContext(),Register.class));
             }
         });
-    }
 
 
-    public void openRegister() {
-        Intent intent = new Intent(this, Register.class);
-        startActivity(intent);
+        btn_signin = findViewById(R.id.btn_signin);
+        btn_signin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),Login.class));
+            }
+        });
+
+
+        btn_guest = findViewById(R.id.btn_guest);
+        btn_guest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            }
+        });
+
+
+
     }
+
 
 }

@@ -3,10 +3,11 @@
     package="com.example.diploma">
 
     <application>
-        <activity android:name=".MainActivity"
-        android:theme="@style/Theme.Diploma.NoActionBar"> </activity>
+
+
+
         <activity
-            android:name=".Login"
+            android:name=".WelcomePage"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.Diploma.NoActionBar">
             <intent-filter>
@@ -15,6 +16,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <activity android:name=".Login"
+            android:theme="@style/Theme.Diploma.NoActionBar"> </activity>
+
+        <activity android:name=".MainActivity"
+            android:theme="@style/Theme.Diploma.NoActionBar"> </activity>
+
+
+        <activity
+            android:name=".Register"
+            android:theme="@style/Theme.Diploma.NoActionBar"
+            > </activity>
     </application>
 
 </manifest>
