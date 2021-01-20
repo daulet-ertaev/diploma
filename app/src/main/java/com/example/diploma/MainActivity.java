@@ -8,8 +8,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
@@ -19,10 +22,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 public class MainActivity extends AppCompatActivity {
-    Button resendCode;
-    TextView verifyMsg;
-    FirebaseAuth fAuth;
-    String userID;
+    private Button resendCode;
+    private TextView verifyMsg;
+    private FirebaseAuth fAuth;
+    private String userID;
     private static final String TAG = "MainActivity";
 
     private ChipNavigationBar chipNavigationBar;
@@ -39,32 +42,49 @@ public class MainActivity extends AppCompatActivity {
         verifyMsg=findViewById(R.id.verificationText);
 
 
-        FirebaseUser user = fAuth.getCurrentUser();
-
-            if (user != null) {
-                if (!user.isEmailVerified()) {
-                    verifyMsg.setVisibility(View.VISIBLE);
-                    resendCode.setVisibility(View.VISIBLE);
-
-                    resendCode.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //
-                            user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Toast.makeText(v.getContext(), "Verification Email has been sent.", Toast.LENGTH_SHORT).show();
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.d(TAG, "Failure! Email not sent. " + e.getMessage());
-                                }
-                            });
+//        FirebaseUser user = fAuth.getCurrentUser();
+//
+//            if (user != null) {
+//                if (!user.isEmailVerified()) {
+//                    verifyMsg.setVisibility(View.VISIBLE);
+//                    resendCode.setVisibility(View.VISIBLE);
+//
+//                    resendCode.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            //
+//                            user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                @Override
+//                                public void onSuccess(Void aVoid) {
+//                                    Toast.makeText(v.getContext(), "Verification Email has been sent.", Toast.LENGTH_SHORT).show();
+//                                }
+//                            }).addOnFailureListener(new OnFailureListener() {
+//                                @Override
+//                                public void onFailure(@NonNull Exception e) {
+//                                    Log.d(TAG, "Failure! Email not sent. " + e.getMessage());
+//                                }
+//                            });
+//                        }
+//                    });
+//                }
+//            }
+//            else {
+                fAuth.signInAnonymously().addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()){
+                            Log.d(TAG, "signInAnonymously:success");
+                            FirebaseUser user = fAuth.getCurrentUser();
+                            Toast.makeText(MainActivity.this, "You're logged anonymously", Toast.LENGTH_LONG).show();
                         }
-                    });
-                }
-            }
+                        else {
+                            Log.w(TAG, "signInAnonymously:failure", task.getException());
+                            Toast.makeText(MainActivity.this, "Auth failed", Toast.LENGTH_LONG).show();
+
+                        }
+                    }
+                });
+
         //NAVIGATION BAR START
         chipNavigationBar=findViewById(R.id.chipNavigation);
         chipNavigationBar.setItemSelected(R.id.home, true);
@@ -95,6 +115,15 @@ public class MainActivity extends AppCompatActivity {
 
         //NAVIGATION BAR ENDED
     }
+
+    protected void onStart() {
+        super.onStart();
+            FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+            if (currentUser!=null){
+                FirebaseUser curuser = fAuth.getCurrentUser();
+            }
+
+        }
 
 
     public void logout(View view) {

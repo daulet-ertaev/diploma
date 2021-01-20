@@ -9,10 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import org.w3c.dom.Text;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,7 +23,7 @@ import com.google.firebase.auth.FirebaseUser;
  * create an instance of this fragment.
  */
 public class ProfileFragment extends Fragment{
-
+    private Button logoutButton;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -67,8 +70,8 @@ public class ProfileFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
-        Button logoutButton = (Button)v.findViewById(R.id.logout);
-        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+        logoutButton = (Button)v.findViewById(R.id.logout);
+        if (FirebaseAuth.getInstance().getCurrentUser() != null && FirebaseAuth.getInstance().getCurrentUser().isAnonymous() == false) {
             logoutButton.setVisibility(View.VISIBLE);
         }
         else {
@@ -80,6 +83,8 @@ public class ProfileFragment extends Fragment{
         // Inflate the layout for this fragment
         return v;
     }
+
+
     // It doesnt work!!! But dont delete it!
 //    @Override
 //    public void onClick(View v) {
