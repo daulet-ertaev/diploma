@@ -8,33 +8,6 @@
     tools:context=".WelcomePage">
 
 
-    <Button
-        android:id="@+id/btn_signin"
-        android:layout_width="495px"
-        android:layout_height="150px"
-        android:layout_marginLeft="30px"
-        android:layout_marginTop="1580px"
-        android:text="@string/signin"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/btn_signup"
-        android:layout_width="495px"
-        android:layout_height="150px"
-        android:layout_marginLeft="555px"
-        android:layout_marginTop="1580px"
-        android:text="@string/signup"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/btn_guest"
-        android:layout_width="1020px"
-        android:layout_height="150px"
-        android:layout_marginTop="1740px"
-        android:layout_marginLeft="30px"
-        android:text="@string/asguest"
-        tools:ignore="MissingConstraints"/>
-
 
     <TextView
         android:layout_width="wrap_content"

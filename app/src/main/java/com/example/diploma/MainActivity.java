@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-
+        //NAVIGATION BAR START
         chipNavigationBar=findViewById(R.id.chipNavigation);
         chipNavigationBar.setItemSelected(R.id.home, true);
         getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
@@ -90,7 +90,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
          });
+
+        //NAVIGATION BAR ENDED
     }
+
+
     public void logout(View view) {
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(getApplicationContext(),WelcomePage.class));

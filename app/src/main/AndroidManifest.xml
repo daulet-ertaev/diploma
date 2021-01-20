@@ -27,8 +27,8 @@
 
         <activity
             android:name=".Register"
-            android:theme="@style/Theme.Diploma.NoActionBar"
-            > </activity>
+            android:theme="@style/Theme.Diploma.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
