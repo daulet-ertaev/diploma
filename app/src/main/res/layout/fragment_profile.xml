@@ -1,31 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_200"
+    android:id="@+id/profile_layout"
     tools:context=".ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="PROFILE FRAGMENT"
-        android:textSize="40dp" />
 
     <Button
         android:id="@+id/logout"
-        android:layout_width="146dp"
-        android:layout_height="85dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="134dp"
-        android:layout_marginTop="464dp"
-        android:onClick="logout"
-        android:text="log out"
-        tools:visibility="gone" />
+        android:layout_height="10px"
+        android:layout_width="10px"/>
+
+    <Button
+        android:id="@+id/addproject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add project"
+        android:layout_marginTop="600px"
+        android:layout_marginLeft="200px" />
+
+    <Button
+        android:id="@+id/myprojects"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="my projects"
+        android:layout_marginTop="600px"
+        android:layout_marginLeft="650px"/>
+
+    <Button
+        android:id="@+id/settings_profile"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/settings_icon"
+        android:layout_marginTop="50px"
+        android:layout_marginLeft="920px"/>
+
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="171dp"
+        android:layout_height="139dp"
+        android:src="@drawable/avatar"
+        android:layout_marginLeft="300px"
+        android:layout_marginTop="100px"/>
 
 
 </RelativeLayout>
