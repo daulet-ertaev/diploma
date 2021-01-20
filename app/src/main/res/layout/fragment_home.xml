@@ -23,36 +23,41 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
             <ImageView
                 android:layout_width="match_parent"
                 android:background="#c1c1c1"
                 android:layout_height="300dp"
-                android:src="@drawable/startup" />
-            <ImageView
-                android:layout_width="match_parent"
-                android:background="#c1c1c1"
-                android:layout_height="300dp"
-                android:layout_marginTop="30dp"
-                android:src="@drawable/startup2"/>
+                android:src="@drawable/startup"
+                android:scaleType="fitXY" />
             <ImageView
                 android:layout_width="match_parent"
                 android:background="#c1c1c1"
                 android:layout_height="300dp"
                 android:layout_marginTop="30dp"
-                android:src="@drawable/startup"/>
+                android:src="@drawable/startup2"
+                android:scaleType="fitXY" />
             <ImageView
                 android:layout_width="match_parent"
                 android:background="#c1c1c1"
                 android:layout_height="300dp"
                 android:layout_marginTop="30dp"
-                android:src="@drawable/startup2"/>
+                android:src="@drawable/startup"
+                android:scaleType="fitXY" />
             <ImageView
                 android:layout_width="match_parent"
                 android:background="#c1c1c1"
                 android:layout_height="300dp"
                 android:layout_marginTop="30dp"
-                android:src="@drawable/startup"/>
+                android:src="@drawable/startup2"
+                android:scaleType="fitXY" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:background="#c1c1c1"
+                android:layout_height="300dp"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/startup"
+                android:scaleType="fitXY" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
