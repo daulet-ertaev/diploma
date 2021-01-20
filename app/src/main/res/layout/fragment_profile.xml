@@ -24,7 +24,8 @@
         android:layout_marginStart="134dp"
         android:layout_marginTop="464dp"
         android:onClick="logout"
-        android:text="log out" />
+        android:text="log out"
+        tools:visibility="gone" />
 
 
 </RelativeLayout>

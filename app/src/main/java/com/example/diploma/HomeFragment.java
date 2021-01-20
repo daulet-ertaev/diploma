@@ -99,11 +99,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
-        TextView currentUserField = (TextView)v.findViewById(R.id.currentUser);
 
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        String userMail = currentUser.getEmail();
-        currentUserField.setText(""+userMail);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
     }

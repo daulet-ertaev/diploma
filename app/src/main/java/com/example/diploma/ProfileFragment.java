@@ -68,6 +68,12 @@ public class ProfileFragment extends Fragment{
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
         Button logoutButton = (Button)v.findViewById(R.id.logout);
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            logoutButton.setVisibility(View.VISIBLE);
+        }
+        else {
+            logoutButton.setVisibility(View.GONE);
+        }
 
 
         //logoutButton.setOnClickListener(this);

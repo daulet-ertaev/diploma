@@ -38,31 +38,33 @@ public class MainActivity extends AppCompatActivity {
         resendCode=findViewById(R.id.verifyButton);
         verifyMsg=findViewById(R.id.verificationText);
 
-        userID = fAuth.getCurrentUser().getUid();
+
         FirebaseUser user = fAuth.getCurrentUser();
 
-        if(!user.isEmailVerified()){
-            verifyMsg.setVisibility(View.VISIBLE);
-            resendCode.setVisibility(View.VISIBLE);
+            if (user != null) {
+                if (!user.isEmailVerified()) {
+                    verifyMsg.setVisibility(View.VISIBLE);
+                    resendCode.setVisibility(View.VISIBLE);
 
-            resendCode.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //
-                    user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    resendCode.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public void onSuccess(Void aVoid) {
-                            Toast.makeText(v.getContext(), "Verification Email has been sent.",Toast.LENGTH_SHORT).show();
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.d(TAG, "Failure! Email not sent. "+e.getMessage());
+                        public void onClick(View v) {
+                            //
+                            user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(v.getContext(), "Verification Email has been sent.", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d(TAG, "Failure! Email not sent. " + e.getMessage());
+                                }
+                            });
                         }
                     });
                 }
-            });
-        }
+            }
         //NAVIGATION BAR START
         chipNavigationBar=findViewById(R.id.chipNavigation);
         chipNavigationBar.setItemSelected(R.id.home, true);
