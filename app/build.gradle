@@ -48,8 +48,8 @@ dependencies {
 
     //firebase auth
     implementation platform('com.google.firebase:firebase-bom:26.3.0')
+    implementation 'com.google.firebase:firebase-database'
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-analytics'
-    compileOnly 'com.google.android.wearable:wearable:2.6.0'
 
 }
