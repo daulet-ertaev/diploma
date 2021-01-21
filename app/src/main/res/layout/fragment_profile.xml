@@ -10,8 +10,10 @@
 
     <Button
         android:id="@+id/logout"
-        android:layout_width="10px"
-        android:layout_height="10px" />
+        android:layout_width="200px"
+        android:layout_height="200px"
+        android:layout_marginTop="200px"
+        android:layout_marginLeft="20px"/>
 
     <Button
         android:id="@+id/addproject"
