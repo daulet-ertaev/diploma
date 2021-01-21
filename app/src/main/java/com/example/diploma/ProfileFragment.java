@@ -104,7 +104,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                //  getParentFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();      NOT WORKING
+                startActivity(new Intent(getActivity(),MainActivity.class));
                 fAuth.signInAnonymously().addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
