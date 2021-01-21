@@ -20,9 +20,4 @@
         android:hint="Enter your password"
         android:inputType="textPassword" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="32dp" />
-
 </LinearLayout>

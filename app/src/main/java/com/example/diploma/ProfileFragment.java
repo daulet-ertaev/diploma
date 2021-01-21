@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
@@ -69,8 +70,14 @@ public class ProfileFragment extends Fragment {
             builder.setMessage(message); // сообщение
             builder.setPositiveButton(button1String, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    SignInDialog customLoginDialog = new SignInDialog();
-                    customLoginDialog.show(getActivity().getFragmentManager(),"login");
+                    LoginFragment nextFrag= new LoginFragment();
+                    if (nextFrag != null) {
+                        getActivity().getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.container, nextFrag, "findThisFragment")
+                                .addToBackStack(null)
+                                .commit();
+
+                    }
                 }
             });
             builder.setNegativeButton(button2String, new DialogInterface.OnClickListener() {

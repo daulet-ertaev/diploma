@@ -37,7 +37,6 @@ public class SignInDialog extends DialogFragment {
 
         emailText = view.findViewById(R.id.email);
         passwordText = view.findViewById(R.id.password);
-        textView = view.findViewById(R.id.textView);
 
 
         builder.setNegativeButton("Cancel", null);
@@ -45,7 +44,36 @@ public class SignInDialog extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 //          LOG IN!
+//                String email = emailText.getText().toString().trim();
+//                String password = passwordText.getText().toString().trim();
+//
+//                if(TextUtils.isEmpty(email)){
+//                    emailText.setError("Email is Required.");
+//                    return;
+//                }
+//
+//                if(TextUtils.isEmpty(password)){
+//                    passwordText.setError("Password is Required.");
+//                    return;
+//                }
+//
+//                if(password.length() < 6){
+//                    passwordText.setError("Password Must be >= 6 Characters");
+//                    return;
+//                }
 
+                fAuth.signInWithEmailAndPassword("daulet.ertaev7@gmail.com","123456").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(getActivity(), "Logged in Successfully", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getActivity().getApplicationContext(),MainActivity.class));
+                        }else {
+                            Toast.makeText(getActivity(), "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
             }
         });
 
