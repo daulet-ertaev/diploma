@@ -91,46 +91,45 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "Error !", Toast.LENGTH_SHORT).show();
-//                String email = mEmail.getText().toString().trim();
-//                String password = mPassword.getText().toString().trim();
-//
-//                if(TextUtils.isEmpty(email)){
-//                    mEmail.setError("Email is Required.");
-//                    return;
-//                }
-//
-//                if(TextUtils.isEmpty(password)){
-//                    mPassword.setError("Password is Required.");
-//                    return;
-//                }
-//
-//                if(password.length() < 6){
-//                    mPassword.setError("Password Must be >= 6 Characters");
-//                    return;
-//                }
-//
-//                progressBar.setVisibility(View.VISIBLE);
-//
-//                fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        if(task.isSuccessful()){
-//                            Toast.makeText(getActivity(), "Logged in Successfully", Toast.LENGTH_SHORT).show();
-//                            startActivity(new Intent(getActivity().getApplicationContext(),MainActivity.class));
-//                        }else {
-//                            Toast.makeText(getActivity(), "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-//                            progressBar.setVisibility(View.GONE);
-//                        }
-//
-//                    }
-//                });
+                String email = mEmail.getText().toString().trim();
+                String password = mPassword.getText().toString().trim();
 
-            }
-        });
+                if(TextUtils.isEmpty(email)){
+                    mEmail.setError("Email is Required.");
+                    return;
+                }
 
+                if(TextUtils.isEmpty(password)){
+                    mPassword.setError("Password is Required.");
+                    return;
+                }
 
+                if(password.length() < 6){
+                    mPassword.setError("Password Must be >= 6 Characters");
+                    return;
+                }
+
+                progressBar.setVisibility(View.VISIBLE);
+
+                fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(getActivity(), "Logged in Successfully", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getActivity().getApplicationContext(),MainActivity.class));
+                        }else {
+                            Toast.makeText(getActivity(), "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.GONE);
+                        }
+
+                    }
+                });
+
+             }
+         });
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        return v;
+        //inflater.inflate(R.layout.fragment_login, container, false);
     }
 }
