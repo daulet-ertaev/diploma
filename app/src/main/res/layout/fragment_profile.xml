@@ -9,13 +9,14 @@
 
 
    <TextView
+       android:id="@+id/name_field"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:text="FullName:"
-       android:layout_marginTop="300dp"
        android:layout_marginLeft="10dp"
-       android:textSize="20sp"
-       android:textColor="@color/black"/>
+       android:layout_marginTop="300dp"
+       android:text="FullName:"
+       android:textColor="@color/black"
+       android:textSize="20sp" />
 
     <TextView
         android:id="@+id/fullname"
@@ -27,14 +28,15 @@
         android:textColor="@color/black"/>
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email:"
-        android:layout_marginTop="350dp"
-        android:layout_marginLeft="10dp"
-        android:textSize="20sp"
-        android:textColor="@color/black"/>
+ <TextView
+     android:id="@+id/email_field"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_marginLeft="10dp"
+     android:layout_marginTop="350dp"
+     android:text="Email:"
+     android:textColor="@color/black"
+     android:textSize="20sp" />
 
     <TextView
         android:id="@+id/email_info"
@@ -102,6 +104,28 @@
         android:src="@drawable/avatar"
         android:layout_marginLeft="300px"
         android:layout_marginTop="100px"/>
+
+   <TextView
+       android:id="@+id/verificationText"
+       android:layout_width="107dp"
+       android:layout_height="30dp"
+       android:layout_alignParentStart="true"
+       android:layout_alignParentBottom="true"
+       android:layout_centerHorizontal="true"
+       android:layout_marginStart="154dp"
+       android:layout_marginBottom="195dp"
+       android:text="TextView"
+       android:visibility="gone" />
+
+   <Button
+       android:id="@+id/verifyButton"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignParentBottom="true"
+       android:layout_centerHorizontal="true"
+       android:layout_marginBottom="155dp"
+       android:text="@string/verify_now"
+       android:visibility="gone" />
 
 
 </RelativeLayout>

@@ -21,6 +21,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,9 +31,11 @@ import com.google.firebase.auth.FirebaseUser;
 import org.w3c.dom.Text;
 
 public class ProfileFragment extends Fragment {
-    private Button logoutButton;
+    private Button logoutButton, resendCode;
     private Dialog dialog;
     private FirebaseAuth fAuth;
+    private TextView email_field, name_field, phone_field, verifyMsg;
+
     private static final String TAG = "MainActivity";
 
     public ProfileFragment() {
@@ -45,6 +49,57 @@ public class ProfileFragment extends Fragment {
         fAuth = FirebaseAuth.getInstance();
         // When click to settings icon START
         Button btn_settings = (Button) v.findViewById(R.id.settings_profile);
+
+        resendCode=v.findViewById(R.id.verifyButton);
+        verifyMsg=v.findViewById(R.id.verificationText);
+
+        email_field = (TextView)v.findViewById(R.id.email_info);
+        name_field = (TextView)v.findViewById(R.id.fullname);
+        phone_field = (TextView)v.findViewById(R.id.phone_number);
+
+        //verification
+        if (!fAuth.getCurrentUser().isAnonymous() && !fAuth.getCurrentUser().isEmailVerified()) {
+            verifyMsg.setVisibility(View.VISIBLE);
+            resendCode.setVisibility(View.VISIBLE);
+
+            resendCode.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View vi) {
+                    //
+                    fAuth.getCurrentUser().sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(getContext(), "Verification Email has been sent.", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d(TAG, "Failure! Email not sent. " + e.getMessage());
+                        }
+                    });
+                }
+            });
+        }
+
+
+
+        //user data
+        if (FirebaseAuth.getInstance().getCurrentUser() !=null) {
+            //email
+            String user_email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+            email_field.setText(user_email);
+
+            //name
+            String user_name = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+            name_field.setText(user_name);
+
+
+            //phone
+            String user_phone = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber();
+            phone_field.setText(user_phone);
+        }
+
+
         btn_settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

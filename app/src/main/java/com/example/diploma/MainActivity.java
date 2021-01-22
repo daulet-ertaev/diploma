@@ -40,53 +40,27 @@ public class MainActivity extends AppCompatActivity {
 
         fAuth = FirebaseAuth.getInstance();
 
-        resendCode=findViewById(R.id.verifyButton);
-        verifyMsg=findViewById(R.id.verificationText);
+        resendCode = findViewById(R.id.verifyButton);
+        verifyMsg = findViewById(R.id.verificationText);
 
 
         FirebaseUser user = fAuth.getCurrentUser();
+        if (user == null) {
+            fAuth.signInAnonymously().addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "signInAnonymously:success");
+                        FirebaseUser user = fAuth.getCurrentUser();
+                        Toast.makeText(MainActivity.this, "You're logged anonymously", Toast.LENGTH_LONG).show();
+                    } else {
+                        Log.w(TAG, "signInAnonymously:failure", task.getException());
+                        Toast.makeText(MainActivity.this, "Auth failed", Toast.LENGTH_LONG).show();
 
-            if (user != null) {
-                if (!user.isEmailVerified()) {
-                    verifyMsg.setVisibility(View.VISIBLE);
-                    resendCode.setVisibility(View.VISIBLE);
-
-                    resendCode.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //
-                            user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Toast.makeText(v.getContext(), "Verification Email has been sent.", Toast.LENGTH_SHORT).show();
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.d(TAG, "Failure! Email not sent. " + e.getMessage());
-                                }
-                            });
-                        }
-                    });
-                }
-            }
-            else {
-
-                fAuth.signInAnonymously().addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "signInAnonymously:success");
-                            FirebaseUser user = fAuth.getCurrentUser();
-                            Toast.makeText(MainActivity.this, "You're logged anonymously", Toast.LENGTH_LONG).show();
-                        } else {
-                            Log.w(TAG, "signInAnonymously:failure", task.getException());
-                            Toast.makeText(MainActivity.this, "Auth failed", Toast.LENGTH_LONG).show();
-
-                        }
                     }
-                });
-            }
+                }
+            });
+        }
 
 
             
@@ -123,10 +97,6 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onStart() {
         super.onStart();
-            FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-            if (currentUser!=null){
-                FirebaseUser curuser = fAuth.getCurrentUser();
-            }
 
         }
 
