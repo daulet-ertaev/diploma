@@ -90,8 +90,13 @@ public class ProfileFragment extends Fragment {
             });
             builder.setNegativeButton(button2String, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    Toast.makeText(getActivity(), "Sign up", Toast.LENGTH_LONG)
-                            .show();
+                    Toast.makeText(getActivity(), "Sign up", Toast.LENGTH_LONG).show();
+                    RegisterFragment nextFrag = new RegisterFragment();
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.container, nextFrag, "findThisFragmen")
+                                .addToBackStack(null)
+                                .commit();
+
                 }
             });
             builder.setCancelable(false);
