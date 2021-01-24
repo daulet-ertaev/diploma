@@ -27,6 +27,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
@@ -34,7 +39,10 @@ public class ProfileFragment extends Fragment {
     private Button logoutButton, resendCode;
     private Dialog dialog;
     private FirebaseAuth fAuth;
+    private DatabaseReference reference;
     private TextView email_field, name_field, phone_field, verifyMsg;
+    private String decode_email="";
+    private String undecode_email="";
 
     private static final String TAG = "MainActivity";
 
@@ -47,7 +55,7 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
         fAuth = FirebaseAuth.getInstance();
-        // When click to settings icon START
+
         Button btn_settings = (Button) v.findViewById(R.id.settings_profile);
 
         resendCode=v.findViewById(R.id.verifyButton);
@@ -83,23 +91,33 @@ public class ProfileFragment extends Fragment {
 
 
 
-        //user data
-        if (FirebaseAuth.getInstance().getCurrentUser() !=null) {
-            //email
-            String user_email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-            email_field.setText(user_email);
+        //GETTING USER DATA: START
+        if (!fAuth.getCurrentUser().isAnonymous()) {
+            decode_email = fAuth.getCurrentUser().getEmail().replace('.', ',');
+            reference = FirebaseDatabase.getInstance().getReference().child("users").child(decode_email);
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    //email
+                    undecode_email = decode_email.replace(',','.');
+                    email_field.setText(undecode_email);
 
-            //name
-            String user_name = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
-            name_field.setText(user_name);
+                    //name
+                    String user_name = snapshot.child("registerFullName").getValue().toString();
+                    name_field.setText(user_name);
 
-
-            //phone
-            String user_phone = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber();
-            phone_field.setText(user_phone);
+                    //phone
+                    String user_phone = snapshot.child("registerPhone").getValue().toString();
+                    phone_field.setText(user_phone);
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
         }
+        //GETTING USER DATA: END
 
-
+        //CLICK TO SETTINGS: START
         btn_settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,18 +126,17 @@ public class ProfileFragment extends Fragment {
                 fr.commit();
             }
         });
-        //When click to settings icon END
+        //CLICK TO SETTINGS: END
 
 
         //logout button appearence
-        //public void Appereance_logout() {
         logoutButton = (Button) v.findViewById(R.id.logout);
         if (FirebaseAuth.getInstance().getCurrentUser() != null && FirebaseAuth.getInstance().getCurrentUser().isAnonymous() == false) {
             logoutButton.setVisibility(View.VISIBLE);
         } else {
             logoutButton.setVisibility(View.GONE);
         }
-//        }
+
 
         //check if user logged in
         if (FirebaseAuth.getInstance().getCurrentUser().isAnonymous()) {

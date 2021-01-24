@@ -25,6 +25,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 
@@ -34,7 +36,10 @@ public class RegisterFragment extends Fragment {
     Button mRegisterBtn;
     TextView mLoginBtn;
     FirebaseAuth fAuth;
+    FirebaseDatabase rootNode;
+    DatabaseReference reference;
     ProgressBar progressBar;
+    String replaced_email="";
     private static final String TAG = "Register";
 
     public RegisterFragment() {
@@ -58,7 +63,7 @@ public class RegisterFragment extends Fragment {
         mRegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String email = mEmail.getText().toString().trim();
+                String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
                 final String fullName = mFullName.getText().toString();
                 final String phone = mPhone.getText().toString();
@@ -80,9 +85,18 @@ public class RegisterFragment extends Fragment {
 
                 progressBar.setVisibility(View.VISIBLE);
 
+                //SAVE USERDATA TO FIREBASE REALTIME: START
+                rootNode = FirebaseDatabase.getInstance();
+                reference = rootNode.getReference("users");
+
+                //Getting all value
+                replaced_email = email.replace(".", ",");
+                UserHelpWhenRegister helpclass = new UserHelpWhenRegister(replaced_email, fullName, password, phone);
+                reference.child(replaced_email).setValue(helpclass);
+                //SAVE USERDATA TO FIREBASE REALTIME: END
+
+
                 fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-
-
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {

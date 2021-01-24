@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -71,7 +72,9 @@ public class LoginFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(getActivity(), "Logged in Successfully", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getActivity().getApplicationContext(),MainActivity.class));
+                            FragmentTransaction fr = getActivity().getSupportFragmentManager().beginTransaction();
+                            fr.replace(R.id.container, new ProfileFragment());
+                            fr.commit();
                         }else {
                             Toast.makeText(getActivity(), "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
