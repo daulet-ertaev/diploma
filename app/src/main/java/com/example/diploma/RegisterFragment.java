@@ -1,6 +1,6 @@
 package com.example.diploma;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ import java.util.Objects;
 public class RegisterFragment extends Fragment {
     EditText mFullName,mEmail,mPassword,mPhone;
     Button mRegisterBtn;
+    RadioButton male, female;
     TextView mLoginBtn;
     FirebaseAuth fAuth;
     FirebaseDatabase rootNode;
@@ -56,6 +58,8 @@ public class RegisterFragment extends Fragment {
         mPhone = v.findViewById(R.id.RegisterPhone);
         mRegisterBtn = v.findViewById(R.id.RegisterButton);
         mLoginBtn = v.findViewById(R.id.createText);
+        male = v.findViewById(R.id.btn_male);
+        female = v.findViewById(R.id.btn_female);
 
         fAuth = FirebaseAuth.getInstance();
         progressBar = v.findViewById(R.id.progressBar);
@@ -83,16 +87,27 @@ public class RegisterFragment extends Fragment {
                     return;
                 }
 
+
+
                 progressBar.setVisibility(View.VISIBLE);
 
                 //SAVE USERDATA TO FIREBASE REALTIME: START
                 rootNode = FirebaseDatabase.getInstance();
                 reference = rootNode.getReference("users");
 
+
+
                 //Getting all value
                 replaced_email = email.replace(".", ",");
                 UserHelpWhenRegister helpclass = new UserHelpWhenRegister(replaced_email, fullName, password, phone);
                 reference.child(replaced_email).setValue(helpclass);
+
+                if (male.isChecked()){
+                    reference.child(replaced_email).child("gender").setValue("male");
+                }
+                if(female.isChecked()){
+                    reference.child(replaced_email).child("gender").setValue("female");
+                }
                 //SAVE USERDATA TO FIREBASE REALTIME: END
 
 
