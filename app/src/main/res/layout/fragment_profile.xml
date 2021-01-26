@@ -17,7 +17,6 @@
        android:text="FullName:"
        android:textColor="@color/black"
        android:textSize="20sp" />
-
     <TextView
         android:id="@+id/fullname"
         android:layout_width="wrap_content"
@@ -28,7 +27,7 @@
         android:textColor="@color/black"/>
 
 
- <TextView
+    <TextView
      android:id="@+id/email_field"
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
@@ -64,6 +63,25 @@
         android:layout_marginLeft="110dp"
         android:textSize="20sp"
         android:textColor="@color/black"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gender:"
+        android:layout_marginTop="450dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="20sp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="450dp"
+        android:layout_marginLeft="110dp"
+        android:textSize="20sp"
+        android:textColor="@color/black"/>
+
 
     <Button
         android:id="@+id/logout"

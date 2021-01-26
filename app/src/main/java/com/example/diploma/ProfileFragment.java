@@ -40,7 +40,7 @@ public class ProfileFragment extends Fragment {
     private Dialog dialog;
     private FirebaseAuth fAuth;
     private DatabaseReference reference;
-    private TextView email_field, name_field, phone_field, verifyMsg;
+    private TextView email_field, name_field, phone_field, gender_field,verifyMsg;
     private String decode_email="";
     private String undecode_email="";
 
@@ -64,6 +64,7 @@ public class ProfileFragment extends Fragment {
         email_field = (TextView)v.findViewById(R.id.email_info);
         name_field = (TextView)v.findViewById(R.id.fullname);
         phone_field = (TextView)v.findViewById(R.id.phone_number);
+        gender_field = (TextView)v.findViewById(R.id.gender);
 
         //verification
         if (!fAuth.getCurrentUser().isAnonymous() && !fAuth.getCurrentUser().isEmailVerified()) {
@@ -109,6 +110,10 @@ public class ProfileFragment extends Fragment {
                     //phone
                     String user_phone = snapshot.child("registerPhone").getValue().toString();
                     phone_field.setText(user_phone);
+
+                    //gender
+                    String user_gender = snapshot.child("gender").getValue().toString();
+                    gender_field.setText(user_gender);
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
