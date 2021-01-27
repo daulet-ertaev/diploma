@@ -13,6 +13,8 @@ import android.widget.Button;
 
 public class Settingsaccount extends Fragment {
 
+
+
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_settingsaccount, container, false);
@@ -29,6 +31,19 @@ public class Settingsaccount extends Fragment {
         });
         //When click to back icon END
 
+
+
+
+
+        Button btn_changeUserData = (Button) v.findViewById(R.id.changepersonaldata);
+        btn_changeUserData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction fr =  getActivity().getSupportFragmentManager().beginTransaction();
+                fr.replace(R.id.container, new ChangeUserDataFragment());
+                fr.commit();
+            }
+        });
         return v;
     }
 }
