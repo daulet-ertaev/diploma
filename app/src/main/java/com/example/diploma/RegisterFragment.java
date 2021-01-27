@@ -71,6 +71,7 @@ public class RegisterFragment extends Fragment {
                 String password = mPassword.getText().toString().trim();
                 final String fullName = mFullName.getText().toString();
                 final String phone = mPhone.getText().toString();
+                String gender = "";
 
                 if (TextUtils.isEmpty(email)) {
                     mEmail.setError("Email is Required.");
@@ -95,19 +96,19 @@ public class RegisterFragment extends Fragment {
                 rootNode = FirebaseDatabase.getInstance();
                 reference = rootNode.getReference("users");
 
-
+                if (male.isChecked()){
+                    gender = "male";
+                }
+                if(female.isChecked()) {
+                    gender = "female";
+                }
 
                 //Getting all value
                 replaced_email = email.replace(".", ",");
-                UserHelpWhenRegister helpclass = new UserHelpWhenRegister(replaced_email, fullName, password, phone);
+                UserHelpWhenRegister helpclass = new UserHelpWhenRegister(replaced_email, fullName, password, phone, gender);
                 reference.child(replaced_email).setValue(helpclass);
 
-                if (male.isChecked()){
-                    reference.child(replaced_email).child("gender").setValue("male");
-                }
-                if(female.isChecked()){
-                    reference.child(replaced_email).child("gender").setValue("female");
-                }
+
                 //SAVE USERDATA TO FIREBASE REALTIME: END
 
 
