@@ -1,6 +1,5 @@
 package com.example.diploma;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -46,7 +45,6 @@ public class LoginFragment extends Fragment {
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Error !", Toast.LENGTH_SHORT).show();
                 String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
 
@@ -86,6 +84,15 @@ public class LoginFragment extends Fragment {
              }
          });
 
+
+        forgotTextLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction fr = getActivity().getSupportFragmentManager().beginTransaction();
+                fr.replace(R.id.container, new ChangePasswordFragment());
+                fr.commit();
+            }
+        });
         // Inflate the layout for this fragment
         return v;
     }

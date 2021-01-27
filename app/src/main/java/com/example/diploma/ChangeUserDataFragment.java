@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,15 +25,15 @@ import com.google.firebase.database.ValueEventListener;
 
 
 public class ChangeUserDataFragment extends Fragment {
-    EditText email_field,name_field,password_field,phone_field;
+    EditText name_field,phone_field;
     RadioButton gender_male_field, gender_female_field;
-    Button btn_update;
-    FirebaseDatabase rootNode;
+    Button btn_update, btn_editpassword, btn_back;
+
     DatabaseReference reference;
     FirebaseAuth fAuth;
     private String decode_email="";
     private String undecode_email="";
-    String replaced_email="";
+
 
 
     public ChangeUserDataFragment() {
@@ -42,14 +43,13 @@ public class ChangeUserDataFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_change_user_data, container, false);
 
-
+        btn_editpassword = v.findViewById(R.id.EditPassword);
         name_field = v.findViewById(R.id.RegisterFullName);
-        email_field = v.findViewById(R.id.RegisterEmail);
-        password_field = v.findViewById(R.id.RegisterPassword);
         phone_field = v.findViewById(R.id.RegisterPhone);
         gender_male_field = v.findViewById(R.id.btn_male);
         gender_female_field = v.findViewById(R.id.btn_female);
         btn_update = v.findViewById(R.id.UpdateButton);
+        btn_back = v.findViewById(R.id.back_icon);
 
 
         decode_email = fAuth.getInstance().getCurrentUser().getEmail().replace('.', ',');
@@ -66,12 +66,8 @@ public class ChangeUserDataFragment extends Fragment {
                 String user_phone = snapshot.child("registerPhone").getValue().toString();
                 phone_field.setText(user_phone);
 
-                //password
-                String user_password = snapshot.child("registerPassword").getValue().toString();
-                password_field.setText(user_password);
 
-                String user_gender;
-                user_gender = snapshot.child("gender").getValue().toString();
+                String user_gender = snapshot.child("gender").getValue().toString();
                 if(user_gender.equals("female")){
                     gender_female_field.setChecked(true);
                 }
@@ -92,9 +88,22 @@ public class ChangeUserDataFragment extends Fragment {
             public void onClick(View v) {
                 String user_name = name_field.getText().toString().trim();
                 String user_phone = phone_field.getText().toString().trim();
-                String user_password = password_field.getText().toString().trim();
                 String user_gender = "";
 
+                if (TextUtils.isEmpty(user_name)) {
+                    name_field.setError("Username is Required.");
+                    return;
+                }
+
+                if (TextUtils.isEmpty(user_phone)) {
+                    phone_field.setError("Phone is Required.");
+                    return;
+                }
+
+                if (phone_field.length() < 11) {
+                    phone_field.setError("Phone Must be >= 11 digit");
+                    return;
+                }
 
                 reference = FirebaseDatabase.getInstance().getReference().child("users");
 
@@ -104,19 +113,39 @@ public class ChangeUserDataFragment extends Fragment {
                 if(gender_female_field.isChecked()) {
                     user_gender = "female";
                 }
-                UserHelpWhenRegister helpclass = new UserHelpWhenRegister(decode_email, user_name, user_password, user_phone, user_gender);
+                UserHelpWhenRegister helpclass = new UserHelpWhenRegister(decode_email, user_name, user_phone, user_gender);
                 reference.child(decode_email).setValue(helpclass);
+
+                Toast.makeText(getActivity(), "Your data successfully updated!", Toast.LENGTH_LONG).show();
+
 
                 FragmentTransaction fr =  getActivity().getSupportFragmentManager().beginTransaction();
                 fr.replace(R.id.container, new ProfileFragment());
                 fr.commit();
 
-
-                Toast.makeText(getActivity(), "Your data successfully updated!", Toast.LENGTH_LONG).show();
             }
-
         });
 
+
+
+
+        btn_editpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction fr =  getActivity().getSupportFragmentManager().beginTransaction();
+                fr.replace(R.id.container, new ChangePasswordFragment());
+                fr.commit();
+            }
+        });
+
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction fr =  getActivity().getSupportFragmentManager().beginTransaction();
+                fr.replace(R.id.container, new Settingsaccount());
+                fr.commit();
+            }
+        });
         return v;
     }
 }

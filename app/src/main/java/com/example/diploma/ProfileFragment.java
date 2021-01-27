@@ -36,7 +36,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.w3c.dom.Text;
 
 public class ProfileFragment extends Fragment {
-    private Button logoutButton, resendCode;
+    private Button logoutButton, resendCode,btn_settings ;
     private Dialog dialog;
     private FirebaseAuth fAuth;
     private DatabaseReference reference;
@@ -50,13 +50,16 @@ public class ProfileFragment extends Fragment {
         // Required empty public constructor
     }
 
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
         fAuth = FirebaseAuth.getInstance();
 
-        Button btn_settings = (Button) v.findViewById(R.id.settings_profile);
+        btn_settings = (Button) v.findViewById(R.id.settings_profile);
 
         resendCode=v.findViewById(R.id.verifyButton);
         verifyMsg=v.findViewById(R.id.verificationText);
