@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -56,9 +57,6 @@ public class ChangeUserDataFragment extends Fragment {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //email
-                undecode_email = decode_email.replace(',','.');
-                email_field.setText(undecode_email);
 
                 //name
                 String user_name = snapshot.child("registerFullName").getValue().toString();
@@ -112,7 +110,11 @@ public class ChangeUserDataFragment extends Fragment {
                 FragmentTransaction fr =  getActivity().getSupportFragmentManager().beginTransaction();
                 fr.replace(R.id.container, new ProfileFragment());
                 fr.commit();
+
+
+                Toast.makeText(getActivity(), "Your data successfully updated!", Toast.LENGTH_LONG).show();
             }
+
         });
 
         return v;
