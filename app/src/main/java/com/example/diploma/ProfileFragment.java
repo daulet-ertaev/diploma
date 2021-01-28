@@ -2,6 +2,8 @@ package com.example.diploma;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,17 +35,26 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import org.w3c.dom.Text;
+
+import java.io.File;
+import java.io.IOException;
 
 public class ProfileFragment extends Fragment {
     private Button logoutButton, resendCode,btn_settings ;
     private Dialog dialog;
     private FirebaseAuth fAuth;
+    private FirebaseStorage storage;
+    private StorageReference Sreference;
     private DatabaseReference reference;
     private TextView email_field, name_field, phone_field, gender_field,verifyMsg;
     private String decode_email="";
     private String undecode_email="";
+    private ImageView profilepicture;
 
     private static final String TAG = "MainActivity";
 
@@ -58,12 +70,15 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
         fAuth = FirebaseAuth.getInstance();
+        storage = FirebaseStorage.getInstance();
+        Sreference = storage.getReferenceFromUrl("gs://diploma-4071c.appspot.com/userprofilepicture").child(fAuth.getCurrentUser().getEmail().toString()).child(fAuth.getCurrentUser().getUid().toString());
 
         btn_settings = (Button) v.findViewById(R.id.settings_profile);
 
         resendCode=v.findViewById(R.id.verifyButton);
         verifyMsg=v.findViewById(R.id.verificationText);
 
+        profilepicture = v.findViewById(R.id.avatar);
         email_field = (TextView)v.findViewById(R.id.email_info);
         name_field = (TextView)v.findViewById(R.id.fullname);
         phone_field = (TextView)v.findViewById(R.id.phone_number);
@@ -124,6 +139,25 @@ public class ProfileFragment extends Fragment {
             });
         }
         //GETTING USER DATA: END
+
+        try {
+            final File file = File.createTempFile("image", "jpg");
+            Sreference.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+                    profilepicture.setImageBitmap(bitmap);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getContext(), "Image failed to load", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         //CLICK TO SETTINGS: START
         btn_settings.setOnClickListener(new View.OnClickListener() {
