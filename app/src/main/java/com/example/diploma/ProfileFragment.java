@@ -159,10 +159,14 @@ public class ProfileFragment extends Fragment {
 //        }
 
         //Adding projects: START
-        btn_createproject.setOnClickListener(v1 -> {
-            FragmentTransaction fr = getActivity().getSupportFragmentManager().beginTransaction();
-            fr.replace(R.id.container, new CreateProjectFragment());
-            fr.commit();
+        btn_createproject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction fr = getActivity().getSupportFragmentManager().beginTransaction();
+                fr.replace(R.id.container, new CreateProjectFragment());
+
+                fr.commit();
+            }
         });
         //Adding projects: END
 

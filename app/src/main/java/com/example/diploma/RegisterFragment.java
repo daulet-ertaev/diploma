@@ -52,7 +52,7 @@ public class RegisterFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_register, container, false);
 
-        mFullName = v.findViewById(R.id.RegisterFullName);
+        mFullName = v.findViewById(R.id.description);
         mEmail = v.findViewById(R.id.RegisterEmail);
         mPassword = v.findViewById(R.id.RegisterPassword);
         mPhone = v.findViewById(R.id.RegisterPhone);

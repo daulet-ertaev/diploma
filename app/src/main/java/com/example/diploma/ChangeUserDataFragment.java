@@ -67,7 +67,7 @@ public class ChangeUserDataFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_change_user_data, container, false);
 
         btn_editpassword = v.findViewById(R.id.EditPassword);
-        name_field = v.findViewById(R.id.RegisterFullName);
+        name_field = v.findViewById(R.id.description);
         phone_field = v.findViewById(R.id.RegisterPhone);
         gender_male_field = v.findViewById(R.id.btn_male);
         gender_female_field = v.findViewById(R.id.btn_female);
