@@ -31,4 +31,7 @@
     <string name="forgot_password">Forgot Password?</string>
     <string name="email_not_verified">Email Not Verified!</string>
     <string name="verify_now">Verify Now</string>
+    <string name="required_amount">Required amount</string>
+    <string name="description_of_the_project">Description of the project</string>
+    <string name="create">Create</string>
 </resources>
