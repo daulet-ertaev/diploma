@@ -105,7 +105,7 @@ public class RegisterFragment extends Fragment {
 
                 //Getting all value
                 replaced_email = email.replace(".", ",");
-                UserHelpWhenRegister helpclass = new UserHelpWhenRegister(replaced_email, fullName, password, phone, gender);
+                UserHelpWhenRegister helpclass = new UserHelpWhenRegister(replaced_email, fullName, phone, gender);
                 reference.child(replaced_email).setValue(helpclass);
 
 

@@ -8,10 +8,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link CreateProjectFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
 public class CreateProjectFragment extends Fragment {
+
 
     public CreateProjectFragment() {
         // Required empty public constructor
     }
 
+    public static CreateProjectFragment newInstance(String param1, String param2) {
+        CreateProjectFragment fragment = new CreateProjectFragment();
+        Bundle args = new Bundle();
+
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_create_project, container, false);
+    }
 }
