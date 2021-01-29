@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,42 +12,35 @@
         android:id="@+id/title_of_project"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
-        android:layout_marginBottom="38dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="50dp"
         android:ems="15"
         android:hint="Title of the project"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/required_amount"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+
         tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/description"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginBottom="25dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="100dp"
         android:ems="15"
         android:hint="@string/description_of_the_project"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
-        app:layout_constraintStart_toStartOf="@+id/required_amount"
-        app:layout_constraintTop_toBottomOf="@+id/required_amount"
+
         tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/required_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="50dp"
         android:ems="15"
         android:hint="@string/required_amount"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/description"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_of_project"
+        android:inputType="numberDecimal"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -56,21 +49,17 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="126dp"
         android:text="@string/next"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categories" />
+        android:layout_marginTop="450dp"
+        android:layout_centerHorizontal="true"/>
 
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="43dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/categories"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description"
+        android:orientation="vertical"
+        android:layout_marginTop="250dp"
+        android:layout_centerHorizontal="true"
         tools:ignore="MissingConstraints">
 
         <RadioButton
@@ -84,19 +73,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Charity" />
-
     </RadioGroup>
 
     <Spinner
         android:id="@+id/categories"
-        android:layout_width="300sp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="109dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_next"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="350dp"
+        />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

@@ -119,7 +119,7 @@
         android:id="@+id/avatar"
         android:layout_width="171dp"
         android:layout_height="139dp"
-        android:src="@drawable/avatar"
+        android:background="@drawable/avatar"
         android:layout_marginLeft="300px"
         android:layout_marginTop="100px"/>
 

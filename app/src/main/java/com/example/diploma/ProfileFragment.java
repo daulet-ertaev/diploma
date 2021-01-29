@@ -71,7 +71,6 @@ public class ProfileFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
         fAuth = FirebaseAuth.getInstance();
         storage = FirebaseStorage.getInstance();
-        //Sreference = storage.getReferenceFromUrl("gs://diploma-4071c.appspot.com/userprofilepicture").child(fAuth.getCurrentUser().getEmail().toString()).child(fAuth.getCurrentUser().getUid().toString());
 
         btn_settings = (Button) v.findViewById(R.id.settings_profile);
         btn_createproject = (Button) v.findViewById(R.id.addproject);
@@ -112,6 +111,7 @@ public class ProfileFragment extends Fragment {
 
         //GETTING USER DATA: START
         if (!fAuth.getCurrentUser().isAnonymous()) {
+            get_photo();
             decode_email = fAuth.getCurrentUser().getEmail().replace('.', ',');
             reference = FirebaseDatabase.getInstance().getReference().child("users").child(decode_email);
             reference.addValueEventListener(new ValueEventListener() {
@@ -140,23 +140,6 @@ public class ProfileFragment extends Fragment {
         }
         //GETTING USER DATA: END
 
-//        try {
-//            final File file = File.createTempFile("image", "jpg");
-//            Sreference.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-//                @Override
-//                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-//                    Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-//                    profilepicture.setImageBitmap(bitmap);
-//                }
-//            }).addOnFailureListener(new OnFailureListener() {
-//                @Override
-//                public void onFailure(@NonNull Exception e) {
-//                    Toast.makeText(getContext(), "Image failed to load", Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
 
         //Adding projects: START
         btn_createproject.setOnClickListener(new View.OnClickListener() {
@@ -252,6 +235,29 @@ public class ProfileFragment extends Fragment {
         });
 
         return v;
+    }
+
+    private void get_photo() {
+        Sreference = storage.getReferenceFromUrl("gs://diploma-4071c.appspot.com/userprofilepicture").child(fAuth.getCurrentUser().getEmail().toString()).child(fAuth.getCurrentUser().getUid());
+        if (Sreference != null) {
+            try {
+                final File file = File.createTempFile("image", "jpg");
+                Sreference.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                        Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+                        profilepicture.setImageBitmap(bitmap);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getContext(), "Image failed to load", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 

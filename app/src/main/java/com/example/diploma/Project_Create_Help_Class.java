@@ -1,22 +1,22 @@
 package com.example.diploma;
 
-public class Project {
+public class Project_Create_Help_Class {
     public String title, description;
     public int required_amount;
     public String category = "Default";
-    public boolean isCharity;
+    public String isCharity;
     public String author;
 
-    public Project() {
+    public Project_Create_Help_Class() {
     }
 
 
-    public Project(String title, String description, int required_amount, String category, boolean isCharity, String author) {
+    public Project_Create_Help_Class(String title, String description, int required_amount, String category, boolean charity, String author) {
         this.title = title;
         this.description = description;
         this.required_amount = required_amount;
         this.category = category;
-        this.isCharity = isCharity;
+        this.isCharity = String.valueOf(charity);
         this.author = author;
     }
 
@@ -28,6 +28,7 @@ public class Project {
         this.title = title;
     }
 
+
     public String getDescription() {
         return description;
     }
@@ -35,6 +36,7 @@ public class Project {
     public void setDescription(String description) {
         this.description = description;
     }
+
 
     public int getRequired_amount() {
         return required_amount;
@@ -44,6 +46,7 @@ public class Project {
         this.required_amount = required_amount;
     }
 
+
     public String getCategory() {
         return category;
     }
@@ -52,13 +55,16 @@ public class Project {
         this.category = category;
     }
 
-    public boolean isCharity() {
+
+    public String getIsCharity() {
         return isCharity;
     }
 
-    public void setCharity(boolean charity) {
-        isCharity = charity;
+    public void setIsCharity(String charity) {
+        this.isCharity = charity;
     }
+
+
     public String getAuthor() {
         return author;
     }
