@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="126dp"
         android:text="@string/next"
-        android:layout_marginTop="450dp"
+        android:layout_marginTop="500dp"
         android:layout_centerHorizontal="true"/>
 
     <RadioGroup
@@ -75,13 +75,43 @@
             android:text="Charity" />
     </RadioGroup>
 
+
+    <Button
+        android:id="@+id/back_to"
+        android:layout_width="100px"
+        android:layout_height="100px"
+        android:layout_marginLeft="20px"
+        android:layout_marginTop="20px"
+        android:background="@drawable/back_icon" />
+
     <Spinner
         android:id="@+id/categories"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="350dp"
-        />
+        android:layout_marginTop="350dp"/>
 
 
+    <EditText
+        android:id="@+id/Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="420dp"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/choose_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="420dp"
+        android:layout_centerHorizontal="true"
+        android:text="Select end data" />
+
+    <Button
+        android:id="@+id/rechoose_data"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="425dp"
+        android:background="@drawable/relaod_icon"/>
 </RelativeLayout>
