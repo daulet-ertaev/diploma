@@ -35,6 +35,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.IOException;
 
@@ -197,11 +199,18 @@ public class ChangeUserDataFragment extends Fragment {
         if (requestCode == IMG_REQUEST_ID && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imageUri = data.getData();
 
-            try {
-                Bitmap bitmapImage = MediaStore.Images.Media.getBitmap(resolver,imageUri);
-                profile_photo.setImageBitmap(bitmapImage);
-            } catch (IOException e) {
-                e.printStackTrace();
+            CropImage.activity().start(getContext(), this);
+        }
+        if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE){
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if(requestCode == RESULT_OK) {
+                Uri resultUri = result.getUri();
+                try {
+                    Bitmap bitmapImage = MediaStore.Images.Media.getBitmap(resolver, resultUri);
+                    profile_photo.setImageBitmap(bitmapImage);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

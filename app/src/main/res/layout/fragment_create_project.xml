@@ -113,5 +113,5 @@
         android:layout_height="30dp"
         android:layout_marginLeft="280dp"
         android:layout_marginTop="425dp"
-        android:background="@drawable/relaod_icon"/>
+        android:background="@drawable/reload_icon"/>
 </RelativeLayout>
