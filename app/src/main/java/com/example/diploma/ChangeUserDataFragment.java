@@ -198,21 +198,26 @@ public class ChangeUserDataFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == IMG_REQUEST_ID && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imageUri = data.getData();
-
-            CropImage.activity().start(getContext(), this);
-        }
-        if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE){
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            if(requestCode == RESULT_OK) {
-                Uri resultUri = result.getUri();
-                try {
-                    Bitmap bitmapImage = MediaStore.Images.Media.getBitmap(resolver, resultUri);
-                    profile_photo.setImageBitmap(bitmapImage);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            try {
+                Bitmap bitmapImage = MediaStore.Images.Media.getBitmap(resolver,imageUri);
+                profile_photo.setImageBitmap(bitmapImage);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
+
+//        if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE){
+//            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+//            if(requestCode == RESULT_OK) {
+//                Uri resultUri = result.getUri();
+//                try {
+//                    Bitmap bitmapImage = MediaStore.Images.Media.getBitmap(resolver, resultUri);
+//                    profile_photo.setImageBitmap(bitmapImage);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
     }
 
     private void saveProfilePictureInFirebase() {
@@ -237,7 +242,7 @@ public class ChangeUserDataFragment extends Fragment {
                     @Override
                     public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
                         double progress = (100.0 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
-                        progressDialog.setMessage("Saved " + (int) progress + "%");
+                        progressDialog.setMessage("Saved " + (int) progress + "%    After uploading do upload");
                     }
                 });
             }catch (Exception e){

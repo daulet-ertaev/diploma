@@ -1,150 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/profile_layout"
+    android:id="@+id/refreshLayout"
     tools:context=".ProfileFragment">
 
+    <RelativeLayout
+        android:id="@+id/profile_layout"
+        android:layout_width="match_parent"
+        android:background="@null"
+        android:layout_height="0dp">
 
-   <TextView
-       android:id="@+id/name_field"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_marginLeft="10dp"
-       android:layout_marginTop="300dp"
-       android:text="FullName:"
-       android:textColor="@color/black"
-       android:textSize="20sp" />
-    <TextView
-        android:id="@+id/fullname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:layout_marginLeft="110dp"
-        android:textSize="20sp"
-        android:textColor="@color/black"/>
+      <TextView
+          android:id="@+id/name_field"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="10dp"
+          android:layout_marginTop="300dp"
+          android:text="FullName:"
+          android:textColor="@color/black"
+          android:textSize="20sp" />
 
+      <TextView
+          android:id="@+id/fullname"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="300dp"
+          android:layout_marginLeft="110dp"
+          android:textSize="20sp"
+          android:textColor="@color/black"/>
 
-    <TextView
-     android:id="@+id/email_field"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:layout_marginLeft="10dp"
-     android:layout_marginTop="350dp"
-     android:text="Email:"
-     android:textColor="@color/black"
-     android:textSize="20sp" />
+      <TextView
+          android:id="@+id/email_field"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="10dp"
+          android:layout_marginTop="350dp"
+          android:text="Email:"
+          android:textColor="@color/black"
+          android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/email_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="350dp"
-        android:layout_marginLeft="110dp"
-        android:textSize="20sp"
-        android:textColor="@color/black"/>
+      <TextView
+          android:id="@+id/email_info"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="350dp"
+          android:layout_marginLeft="110dp"
+          android:textSize="20sp"
+          android:textColor="@color/black"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Phone:"
-        android:layout_marginTop="400dp"
-        android:layout_marginLeft="10dp"
-        android:textSize="20sp"
-        android:textColor="@color/black"/>
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Phone:"
+          android:layout_marginTop="400dp"
+          android:layout_marginLeft="10dp"
+          android:textSize="20sp"
+          android:textColor="@color/black"/>
 
-    <TextView
-        android:id="@+id/phone_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="400dp"
-        android:layout_marginLeft="110dp"
-        android:textSize="20sp"
-        android:textColor="@color/black"/>
+      <TextView
+          android:id="@+id/phone_number"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="400dp"
+          android:layout_marginLeft="110dp"
+          android:textSize="20sp"
+          android:textColor="@color/black"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Gender:"
-        android:layout_marginTop="450dp"
-        android:layout_marginLeft="10dp"
-        android:textSize="20sp"
-        android:textColor="@color/black"/>
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Gender:"
+          android:layout_marginTop="450dp"
+          android:layout_marginLeft="10dp"
+          android:textSize="20sp"
+          android:textColor="@color/black"/>
 
-    <TextView
-        android:id="@+id/gender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="450dp"
-        android:layout_marginLeft="110dp"
-        android:textSize="20sp"
-        android:textColor="@color/black"/>
+      <TextView
+          android:id="@+id/gender"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="450dp"
+          android:layout_marginLeft="110dp"
+          android:textSize="20sp"
+          android:textColor="@color/black"/>
 
+      <Button
+          android:id="@+id/logout"
+          android:layout_width="150px"
+          android:layout_height="150px"
+          android:layout_marginTop="200px"
+          android:layout_marginLeft="20px"
+          android:background="@drawable/logout_icon"/>
 
-    <Button
-        android:id="@+id/logout"
-        android:layout_width="150px"
-        android:layout_height="150px"
-        android:layout_marginTop="200px"
-        android:layout_marginLeft="20px"
-        android:background="@drawable/logout_icon"/>
+      <Button
+          android:id="@+id/addproject"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="200px"
+          android:layout_marginTop="600px"
+          android:text="Add project" />
 
-    <Button
-        android:id="@+id/addproject"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="200px"
-        android:layout_marginTop="600px"
-        android:text="Add project" />
+      <Button
+          android:id="@+id/myprojects"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="my projects"
+          android:layout_marginTop="600px"
+          android:layout_marginLeft="650px"/>
 
-    <Button
-        android:id="@+id/myprojects"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="my projects"
-        android:layout_marginTop="600px"
-        android:layout_marginLeft="650px"/>
+      <Button
+          android:id="@+id/settings_profile"
+          android:layout_width="40dp"
+          android:layout_height="40dp"
+          android:background="@drawable/settings_icon"
+          android:layout_marginTop="50px"
+          android:layout_marginLeft="920px"/>
 
-    <Button
-        android:id="@+id/settings_profile"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@drawable/settings_icon"
-        android:layout_marginTop="50px"
-        android:layout_marginLeft="920px"/>
+      <ImageView
+          android:id="@+id/avatar"
+          android:layout_width="171dp"
+          android:layout_height="139dp"
+          android:background="@drawable/avatar"
+          android:layout_marginLeft="300px"
+          android:layout_marginTop="100px"/>
 
-    <ImageView
-        android:id="@+id/avatar"
-        android:layout_width="171dp"
-        android:layout_height="139dp"
-        android:background="@drawable/avatar"
-        android:layout_marginLeft="300px"
-        android:layout_marginTop="100px"/>
+      <TextView
+          android:id="@+id/verificationText"
+          android:layout_width="107dp"
+          android:layout_height="30dp"
+          android:layout_alignParentStart="true"
+          android:layout_alignParentBottom="true"
+          android:layout_centerHorizontal="true"
+          android:layout_marginStart="154dp"
+          android:layout_marginBottom="195dp"
+          android:text="TextView"
+          android:visibility="gone" />
 
-   <TextView
-       android:id="@+id/verificationText"
-       android:layout_width="107dp"
-       android:layout_height="30dp"
-       android:layout_alignParentStart="true"
-       android:layout_alignParentBottom="true"
-       android:layout_centerHorizontal="true"
-       android:layout_marginStart="154dp"
-       android:layout_marginBottom="195dp"
-       android:text="TextView"
-       android:visibility="gone" />
+      <Button
+          android:id="@+id/verifyButton"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentBottom="true"
+          android:layout_centerHorizontal="true"
+          android:layout_marginBottom="155dp"
+          android:text="@string/verify_now"
+          android:visibility="gone" />
 
-   <Button
-       android:id="@+id/verifyButton"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_alignParentBottom="true"
-       android:layout_centerHorizontal="true"
-       android:layout_marginBottom="155dp"
-       android:text="@string/verify_now"
-       android:visibility="gone" />
+    </RelativeLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-
-</RelativeLayout>
 

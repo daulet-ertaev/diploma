@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -55,6 +56,7 @@ public class ProfileFragment extends Fragment {
     private String decode_email="";
     private String undecode_email="";
     private ImageView profilepicture;
+    private SwipeRefreshLayout reloadPage;
 
     private static final String TAG = "MainActivity";
 
@@ -76,6 +78,7 @@ public class ProfileFragment extends Fragment {
         btn_createproject = (Button) v.findViewById(R.id.addproject);
         resendCode=v.findViewById(R.id.verifyButton);
         verifyMsg=v.findViewById(R.id.verificationText);
+        reloadPage=v.findViewById(R.id.refreshLayout);
 
         profilepicture = v.findViewById(R.id.avatar);
         email_field = (TextView)v.findViewById(R.id.email_info);
@@ -140,6 +143,17 @@ public class ProfileFragment extends Fragment {
         }
         //GETTING USER DATA: END
 
+        //RELOAD FULL PAGE: START
+        reloadPage.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                FragmentTransaction fr = getActivity().getSupportFragmentManager().beginTransaction();
+                fr.replace(R.id.container, new ProfileFragment());
+                fr.commit();
+                reloadPage.setRefreshing(false );
+            }
+        });
+        // RELOAD FULL PAGE: END
 
         //Adding projects: START
         btn_createproject.setOnClickListener(new View.OnClickListener() {
@@ -147,7 +161,6 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 FragmentTransaction fr = getActivity().getSupportFragmentManager().beginTransaction();
                 fr.replace(R.id.container, new CreateProjectFragment());
-
                 fr.commit();
             }
         });
@@ -201,7 +214,7 @@ public class ProfileFragment extends Fragment {
                     Toast.makeText(getActivity(), "Sign up", Toast.LENGTH_LONG).show();
                     RegisterFragment nextFrag = new RegisterFragment();
                     getActivity().getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.container, nextFrag, "findThisFragmen")
+                                .replace(R.id.container, nextFrag, "findThisFragment")
                                 .addToBackStack(null)
                                 .commit();
 

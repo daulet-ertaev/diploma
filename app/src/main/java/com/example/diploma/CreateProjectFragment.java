@@ -14,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -36,6 +35,7 @@ import java.util.List;
 public class CreateProjectFragment extends Fragment {
     private String[] categories = {"Sport", "IT"};
     private int count = 0;
+    public String date;
 
     private Spinner spin_categories;
     private Button btn_next, btn_back, btn_choose_date, btn_rechoose;
@@ -77,9 +77,7 @@ public class CreateProjectFragment extends Fragment {
         date_end = v.findViewById(R.id.Date);
 
 
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("projects");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("projects");
 
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -100,6 +98,7 @@ public class CreateProjectFragment extends Fragment {
                 String project_title, project_description, project_author, project_category;
                 int project_required_amount;
                 boolean project_isCharity = false;
+                String checked_by_moderator = "false";
 
 
 
@@ -124,24 +123,21 @@ public class CreateProjectFragment extends Fragment {
 
                 project_required_amount = Integer.parseInt(value);
 
-
-
-
                 int id = project_type.getCheckedRadioButtonId();
                 selected = (RadioButton)v.findViewById(id);
                 String whichVar = selected.getText().toString();
-                if(whichVar=="Charity"){
+                if(whichVar=="Charity"){ 
                     project_isCharity = true;
                 }
                 else if(whichVar=="Startup"){
                     project_isCharity = false;
                 }
 
-                Project_Create_Help_Class project = new Project_Create_Help_Class(project_title, project_description, project_required_amount,"Default" ,project_isCharity, project_author);
+                ProjectCreateHelpClass project = new ProjectCreateHelpClass(project_title, project_description, project_required_amount,"Default" ,project_isCharity, project_author, checked_by_moderator,date);
                 ref.child(String.valueOf(count)).setValue(project);
-                Toast.makeText(getActivity(),"Project created successfully",Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(),"Project data saved successfully",Toast.LENGTH_LONG).show();
                 FragmentTransaction fr = getActivity().getSupportFragmentManager().beginTransaction();
-                fr.replace(R.id.container, new ProfileFragment());
+                fr.replace(R.id.container, new AddImagesFragment());
                 fr.commit();
             }
         });
@@ -189,7 +185,7 @@ public class CreateProjectFragment extends Fragment {
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
         mDateSetListener = (view, year1, month1, day1) -> {
             month1 = month1 + 1;
-            String date = day1 + "/" + month1 + "/" + year1;
+            date = day1 + "/" + month1 + "/" + year1;
             date_end.setText(date);
         };
 
@@ -198,8 +194,6 @@ public class CreateProjectFragment extends Fragment {
                 getActivity(),
                 android.R.style.Theme_Holo_Dialog_MinWidth,
                 mDateSetListener, year, month, day);
-
-
         datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         datePickerDialog.show();
     }

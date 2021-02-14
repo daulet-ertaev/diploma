@@ -39,6 +39,13 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.wear:wear:1.0.0'
     implementation 'com.google.firebase:firebase-storage:19.2.1'
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'  //for doing animaiton to gif
+
+
+
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
