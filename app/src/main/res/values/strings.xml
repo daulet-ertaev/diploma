@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Diploma</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">MainActivity3</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -31,4 +31,16 @@
     <string name="forgot_password">Forgot Password?</string>
     <string name="email_not_verified">Email Not Verified!</string>
     <string name="verify_now">Verify Now</string>
+<<<<<<< Updated upstream
+=======
+    <string name="required_amount">Required amount</string>
+    <string name="description_of_the_project">Description of the project</string>
+    <string name="create">Create</string>
+    <string-array name="Categories">
+        <item>"IT"</item>
+        <item>"Sport"</item>
+        <item>"Culture"</item>
+    </string-array>
+    <string name="title_activity_main2">MainActivity2</string>
+>>>>>>> Stashed changes
 </resources>

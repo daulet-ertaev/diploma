@@ -38,6 +38,10 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.2.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.wear:wear:1.0.0'
+<<<<<<< Updated upstream
+=======
+    implementation 'com.google.firebase:firebase-storage:19.2.0'
+>>>>>>> Stashed changes
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -52,4 +56,16 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-analytics'
 
+<<<<<<< Updated upstream
+=======
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.firebaseui:firebase-ui-database:4.3.2'
+    //for RecyclerView and circling images
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    //Crop image
+    api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
+    compileOnly 'com.google.android.wearable:wearable:2.8.1'
+>>>>>>> Stashed changes
 }
