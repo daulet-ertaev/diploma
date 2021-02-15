@@ -13,6 +13,8 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -35,7 +37,7 @@ import java.util.List;
 public class CreateProjectFragment extends Fragment {
     private String[] categories = {"Sport", "IT"};
     private int count = 0;
-    public String date;
+    public String date, categories_text;
 
     private Spinner spin_categories;
     private Button btn_next, btn_back, btn_choose_date, btn_rechoose;
@@ -51,21 +53,11 @@ public class CreateProjectFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, categories);
-//        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-//        spin_categories.setAdapter(adapter);
-
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_create_project, container, false);
 
-        spin_categories = (Spinner)v.findViewById(R.id.categories);
+
         btn_next = (Button)v.findViewById(R.id.btn_next);
         btn_back = v.findViewById(R.id.back_to);
         btn_choose_date = v.findViewById(R.id.choose_data);
@@ -76,9 +68,12 @@ public class CreateProjectFragment extends Fragment {
         project_type = (RadioGroup)v.findViewById(R.id.radioGroup);
         date_end = v.findViewById(R.id.Date);
 
+        Spinner spin_categories = (Spinner)v.findViewById(R.id.categories_spinner);
+        categories_text = spin_categories.getSelectedItem().toString();
+        spin_categories.setPrompt("Category");
 
+        //TO GET HOW MANY PROJECTS IS CREATED: START
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("projects");
-
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -89,6 +84,7 @@ public class CreateProjectFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}
         });
+        //TO GET HOW MANY PROJECTS IS CREATED: END
 
 
 
@@ -125,6 +121,9 @@ public class CreateProjectFragment extends Fragment {
 
                 int id = project_type.getCheckedRadioButtonId();
                 selected = (RadioButton)v.findViewById(id);
+                if(id == -1){
+                    //If none is choosed
+                }
                 String whichVar = selected.getText().toString();
                 if(whichVar=="Charity"){ 
                     project_isCharity = true;
@@ -133,7 +132,7 @@ public class CreateProjectFragment extends Fragment {
                     project_isCharity = false;
                 }
 
-                ProjectCreateHelpClass project = new ProjectCreateHelpClass(project_title, project_description, project_required_amount,"Default" ,project_isCharity, project_author, checked_by_moderator,date);
+                ProjectCreateHelpClass project = new ProjectCreateHelpClass(project_title, project_description, project_required_amount,categories_text ,project_isCharity, project_author, checked_by_moderator,date);
                 ref.child(String.valueOf(count)).setValue(project);
                 Toast.makeText(getActivity(),"Project data saved successfully",Toast.LENGTH_LONG).show();
                 FragmentTransaction fr = getActivity().getSupportFragmentManager().beginTransaction();
@@ -188,7 +187,6 @@ public class CreateProjectFragment extends Fragment {
             date = day1 + "/" + month1 + "/" + year1;
             date_end.setText(date);
         };
-
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 getActivity(),

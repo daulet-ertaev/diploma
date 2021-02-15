@@ -52,7 +52,6 @@ public class ChangeUserDataFragment extends Fragment {
 
     DatabaseReference reference;
     FirebaseAuth fAuth;
-    FirebaseStorage fStorage;
     StorageReference Sreference;
 
     private String decode_email="";

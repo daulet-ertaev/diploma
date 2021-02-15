@@ -1,117 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/teal_200"
     tools:context=".CreateProjectFragment">
-
-
-    <EditText
-        android:id="@+id/title_of_project"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="50dp"
-        android:ems="15"
-        android:hint="Title of the project"
-        android:inputType="text"
-
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="100dp"
-        android:ems="15"
-        android:hint="@string/description_of_the_project"
-        android:inputType="text"
-
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/required_amount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:layout_marginLeft="50dp"
-        android:ems="15"
-        android:hint="@string/required_amount"
-        android:inputType="numberDecimal"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/btn_next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="126dp"
-        android:text="@string/next"
-        android:layout_marginTop="500dp"
-        android:layout_centerHorizontal="true"/>
-
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="43dp"
-        android:orientation="vertical"
-        android:layout_marginTop="250dp"
-        android:layout_centerHorizontal="true"
-        tools:ignore="MissingConstraints">
-
-        <RadioButton
-            android:id="@+id/startup"
-            android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <EditText
+            android:id="@+id/title_of_project"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Startup" />
+            android:layout_marginTop="50dp"
+            android:layout_centerHorizontal="true"
+            android:ems="15"
+            android:hint="Title of the project"
+            android:inputType="text"
+            tools:ignore="MissingConstraints" />
 
-        <RadioButton
-            android:id="@+id/charity"
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Charity" />
-    </RadioGroup>
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:ems="15"
+            android:minHeight="150dp"
+            android:padding="10dp"
+            android:gravity="top"
+            android:hint="@string/description_of_the_project"
+            android:inputType="textCapSentences|textMultiLine"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/required_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/description"
+            android:layout_centerHorizontal="true"
+            android:ems="15"
+            android:hint="@string/required_amount"
+            android:inputType="numberDecimal"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/next"
+            android:layout_marginTop="40dp"
+            android:layout_below="@id/Date"
+            android:layout_centerHorizontal="true"/>
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="25dp"
+            android:layout_below="@id/required_amount"
+            android:layout_centerHorizontal="true"
+            tools:ignore="MissingConstraints">
+
+            <RadioButton
+                android:id="@+id/startup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Startup" />
+
+            <RadioButton
+                android:id="@+id/charity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Charity" />
+        </RadioGroup>
 
 
-    <Button
-        android:id="@+id/back_to"
-        android:layout_width="100px"
-        android:layout_height="100px"
-        android:layout_marginLeft="20px"
-        android:layout_marginTop="20px"
-        android:background="@drawable/back_icon" />
+        <Button
+            android:id="@+id/back_to"
+            android:layout_width="100px"
+            android:layout_height="100px"
+            android:layout_marginLeft="20px"
+            android:layout_marginTop="20px"
+            android:background="@drawable/back_icon" />
 
-    <Spinner
-        android:id="@+id/categories"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="350dp"/>
+        <Spinner
+            android:id="@+id/categories_spinner"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/radioGroup"
+            android:spinnerMode="dialog"
+            android:entries="@array/categories"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="35dp"/>
 
 
-    <EditText
-        android:id="@+id/Date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="420dp"
-        android:layout_centerHorizontal="true"/>
+        <EditText
+            android:id="@+id/Date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_below="@id/categories_spinner"
+            android:layout_centerHorizontal="true"/>
 
-    <Button
-        android:id="@+id/choose_data"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="420dp"
-        android:layout_centerHorizontal="true"
-        android:text="Select end data" />
+        <Button
+            android:id="@+id/choose_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_below="@id/categories_spinner"
+            android:layout_centerHorizontal="true"
+            android:text="Select end data" />
 
-    <Button
-        android:id="@+id/rechoose_data"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="280dp"
-        android:layout_marginTop="425dp"
-        android:background="@drawable/reload_icon"/>
-</RelativeLayout>
+        <Button
+            android:id="@+id/rechoose_data"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="280dp"
+            android:layout_marginTop="30dp"
+            android:layout_below="@id/categories_spinner"
+            android:background="@drawable/reload_icon"/>
+    </RelativeLayout>
+</ScrollView>

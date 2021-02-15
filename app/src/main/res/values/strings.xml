@@ -34,9 +34,15 @@
     <string name="required_amount">Required amount</string>
     <string name="description_of_the_project">Description of the project</string>
     <string name="create">Create</string>
-    <string-array name="Categories">
+    <string-array name="categories">
         <item>"IT"</item>
         <item>"Sport"</item>
         <item>"Culture"</item>
+        <item>Commerce</item>
+        <item>Chraity1</item>
+        <item>Chraity2</item>
+        <item>Chraity3</item>
+        <item>Chraity4</item>
+        <item>Chraity5</item>
     </string-array>
 </resources>
